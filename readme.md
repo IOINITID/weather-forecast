@@ -1,4 +1,4 @@
-Название: **Weather Forecast**
+Название: **Weather Forecast** [![Build Status](https://travis-ci.com/IOINITID/weather-forecast.svg?branch=master)](https://travis-ci.com/IOINITID/weather-forecast)
 
 ------------
 
