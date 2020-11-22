@@ -4,14 +4,14 @@ class WeatherForecastService {
     this.apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
   }
 
-  getWeatherData(city) {
+  getWeatherByCityName(city) {
     return fetch(`${this.apiUrl}q=${city}&units=metric&lang=ru&appid=${this.apiKey}`)
     .then((response) => response.ok && response.json())
     .catch((error) => error);
   }
 
-  getWeatherGeo(lat, lon) {
-    return fetch(`${this.apiUrl}lat=${lat}&lon=${lon}&units=metric&appid=${this.apiKey}`)
+  getWeatherByGeolocation(lat, lon) {
+    return fetch(`${this.apiUrl}lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=${this.apiKey}`)
     .then((response) => response.ok && response.json())
     .catch((error) => error);
   }
