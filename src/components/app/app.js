@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
+import {getDirectionByDegrees} from 'degreezzy';
 
 const weatherService = new WeatherForecastService();
 
@@ -21,9 +22,11 @@ const App = () => {
     setIsLoading(false);
   };
 
-  const getWeatherByCurrentGeolocation = () => navigator.geolocation.getCurrentPosition((position) => {
-    getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
-  });
+  const getWeatherByCurrentGeolocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
+    });
+  };
 
   useEffect(() => {
     if (city) {
@@ -59,6 +62,8 @@ const App = () => {
           <p className="weather__city">{weatherData.name}</p>
           <p className="weather__description">{weatherData.weather[0].description}</p>
           <p className="weather__feels-like">Ощущается как: {weatherData.main.feels_like.toFixed(0)}°C</p>
+          <p className="weather__feels-like">Направление ветра: {getDirectionByDegrees(weatherData.wind.deg)}</p>
+          <p className="weather__feels-like">Скорость ветра: {weatherData.wind.speed}м/с</p>
         </div>
       }
     </div>
