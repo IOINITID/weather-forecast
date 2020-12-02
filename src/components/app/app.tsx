@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
@@ -6,7 +6,7 @@ import {getDirectionByDegrees} from 'degreezzy';
 
 const weatherService = new WeatherForecastService();
 
-const App = () => {
+const App: React.FC = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState(``);
   const [isLoading, setIsLoading] = useState(true);
