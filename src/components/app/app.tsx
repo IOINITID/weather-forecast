@@ -4,6 +4,16 @@ import Loader from '../loader/loader';
 import './app.css';
 import {getDirectionByDegrees} from 'degreezzy';
 
+/**
+ * @description Interface for position coordinates properties.
+ */
+interface IPosition {
+  coords: {
+    latitude: number;
+    longitude: number;
+  }
+}
+
 const weatherService = new WeatherForecastService();
 
 const App: React.FC = () => {
@@ -11,19 +21,19 @@ const App: React.FC = () => {
   const [city, setCity] = useState(``);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getWeatherByCityName = async (cityName) => {
+  const getWeatherByCityName = async (cityName: string): Promise<void> => {
     const response = await weatherService.getWeatherByCityName(cityName);
     setWeatherData(response);
   };
 
-  const getWeatherByGeolocation = async (lat, lon) => {
+  const getWeatherByGeolocation = async (lat: number, lon: number): Promise<void> => {
     const response = await weatherService.getWeatherByGeolocation(lat, lon);
     setWeatherData(response);
     setIsLoading(false);
   };
 
-  const getWeatherByCurrentGeolocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
+  const getWeatherByCurrentGeolocation = (): void => {
+    navigator.geolocation.getCurrentPosition((position: IPosition) => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
     });
   };

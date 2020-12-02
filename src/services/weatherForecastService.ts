@@ -12,13 +12,13 @@ class WeatherForecastService implements IWeatherForecastService {
     this.apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
   }
 
-  getWeatherByCityName(city) {
+  getWeatherByCityName(city: string) {
     return fetch(`${this.apiUrl}q=${city}&units=metric&lang=ru&appid=${this.apiKey}`)
     .then((response) => response.ok && response.json())
     .catch((error) => error);
   }
 
-  getWeatherByGeolocation(lat, lon) {
+  getWeatherByGeolocation(lat: number, lon: number) {
     return fetch(`${this.apiUrl}lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=${this.apiKey}`)
     .then((response) => response.ok && response.json())
     .catch((error) => error);
