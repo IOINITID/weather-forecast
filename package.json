@@ -7,7 +7,7 @@
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run test.jest && npm run test.badge",
     "test.jest": "jest",
-    "test.badge": "make-coverage-badge --report-path dist/coverage/coverage-summary.json --output-path dist/coverage/badge.svg",
+    "test.badge": "make-coverage-badge --report-path src/coverage/coverage-summary.json --output-path src/coverage/badge.svg",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
