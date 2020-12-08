@@ -1,7 +1,7 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  coverageDirectory: `./src/coverage`,
+  coverageDirectory: `./dist/coverage`,
   coverageReporters: [
     `json-summary`,
     `text`,
