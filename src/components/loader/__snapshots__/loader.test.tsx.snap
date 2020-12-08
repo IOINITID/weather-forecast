@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Loader component Loader component should render correctly 1`] = `
-<SvgrURL
-  className="loader"
-  height="100"
-  width="100"
-/>
-`;
