@@ -1,7 +1,7 @@
 import React from 'react';
 import LoaderIcon from '../../assets/images/loader-icon.svg';
 
-const Loader: React.FC = () => {
+const Loader = () => {
   return (
     <LoaderIcon
       className="loader"
