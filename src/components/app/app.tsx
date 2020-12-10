@@ -16,7 +16,7 @@ interface IPosition {
 
 const weatherService = new WeatherForecastService();
 
-const App: React.FC = () => {
+const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState(``);
   const [isLoading, setIsLoading] = useState(true);
