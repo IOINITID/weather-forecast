@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
-import {getDirectionByDegrees} from 'degreezzy';
+import { getDirectionByDegrees } from 'degreezzy';
 
 /**
  * @description Interface for position coordinates properties.
@@ -33,9 +33,32 @@ const App = () => {
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
-    navigator.geolocation.getCurrentPosition((position: IPosition) => {
+    interface IPositionOptions {
+      enableHighAccuracy: boolean;
+      timeout: number;
+      maximumAge: number;
+    };
+
+    interface IPositionError {
+      code: number;
+      message: string;
+    }
+
+    const position = (position: IPosition): void => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
-    });
+    };
+
+    const positionError = (positionError: IPositionError): void => {
+      console.log(positionError);
+    };
+
+    const positionOptions: IPositionOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.getCurrentPosition(position, positionError, positionOptions);
   };
 
   useEffect(() => {
