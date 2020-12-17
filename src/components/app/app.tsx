@@ -14,6 +14,23 @@ interface IPosition {
   }
 }
 
+/**
+ * @description Interface for position coordinates errors.
+ */
+interface IPositionError {
+  code: number;
+  message: string;
+}
+
+/**
+ * @description Interface for position coordinates options.
+ */
+interface IPositionOptions {
+  enableHighAccuracy: boolean;
+  timeout: number;
+  maximumAge: number;
+};
+
 const weatherService = new WeatherForecastService();
 
 const App = () => {
@@ -33,17 +50,6 @@ const App = () => {
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
-    interface IPositionOptions {
-      enableHighAccuracy: boolean;
-      timeout: number;
-      maximumAge: number;
-    };
-
-    interface IPositionError {
-      code: number;
-      message: string;
-    }
-
     const position = (position: IPosition): void => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
     };
