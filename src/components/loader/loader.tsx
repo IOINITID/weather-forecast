@@ -1,5 +1,6 @@
 import React from 'react';
 import LoaderIcon from '../../assets/images/loader-icon.svg';
+import './loader.css';
 
 const Loader = () => {
   return (
