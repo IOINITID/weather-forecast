@@ -3,6 +3,7 @@ import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
 import { getDirectionByDegrees } from 'degreezzy';
+import { getDirectionDescription } from '../../utils/direction';
 
 /**
  * @description Interface for position coordinates properties.
@@ -80,6 +81,14 @@ const App = () => {
     return <Loader />;
   }
 
+  const temperature = weatherData.main.temp.toFixed(0);
+  const weatherCity = weatherData.name;
+  const weatherDescription = weatherData.weather[0].description;
+  const temperatureFeelsLike = weatherData.main.feels_like.toFixed(0);
+  const windDirection = getDirectionDescription(getDirectionByDegrees(weatherData.wind.deg));
+  const windSpeed = weatherData.wind.speed;
+  const weatherIcon = weatherData.weather[0].icon;
+
   return (
     <div className="container">
       <input
@@ -93,16 +102,16 @@ const App = () => {
         <div className="weather">
           <img
             className="weather__icon"
-            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`}
+            src={`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`}
             width="100"
             height="100"
           />
-          <p className="weather__temperature">{`${weatherData.main.temp.toFixed(0)}°C`}</p>
-          <p className="weather__city">{weatherData.name}</p>
-          <p className="weather__description">{weatherData.weather[0].description}</p>
-          <p className="weather__feels-like">Ощущается как: {weatherData.main.feels_like.toFixed(0)}°C</p>
-          <p className="weather__feels-like">Направление ветра: {getDirectionByDegrees(weatherData.wind.deg)}</p>
-          <p className="weather__feels-like">Скорость ветра: {weatherData.wind.speed}м/с</p>
+          <p className="weather__temperature">{`${temperature}°C`}</p>
+          <p className="weather__city">{weatherCity}</p>
+          <p className="weather__description">{weatherDescription}</p>
+          <p className="weather__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
+          <p className="weather__feels-like">Направление ветра: {windDirection}</p>
+          <p className="weather__feels-like">Скорость ветра: {windSpeed}м/с</p>
         </div>
       }
     </div>
