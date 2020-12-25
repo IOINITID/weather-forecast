@@ -12,6 +12,8 @@ body {
 .root {
   width: 100%;
   height: 100%;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 
 .container {
@@ -21,7 +23,8 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: lightblue;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 
 .search {
@@ -81,4 +84,58 @@ body {
   text-shadow: 0 1px rgba(0, 0, 0, 0.75);
   background-color: #ffffff;
   border-radius: 10px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+
+.card__city {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 36px;
+  color: #ffffff;
+}
+
+.card__icon {
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.card__description,
+.card__temperature,
+.card__feels-like {
+  margin: 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.card__description:not(:last-child),
+.card__temperature:not(:last-child),
+.card__feels-like:not(:last-child) {
+  margin-bottom: 15px;
 }

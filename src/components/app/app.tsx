@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
@@ -35,18 +35,18 @@ interface IPositionOptions {
 const weatherService = new WeatherForecastService();
 
 const App = () => {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState([]);
   const [city, setCity] = useState(``);
   const [isLoading, setIsLoading] = useState(true);
 
   const getWeatherByCityName = async (cityName: string): Promise<void> => {
     const response = await weatherService.getWeatherByCityName(cityName);
-    setWeatherData(response);
+    setWeatherData((prev) => [...prev, response]);
   };
 
   const getWeatherByGeolocation = async (lat: number, lon: number): Promise<void> => {
     const response = await weatherService.getWeatherByGeolocation(lat, lon);
-    setWeatherData(response);
+    // setWeatherData(response);
     setIsLoading(false);
   };
 
@@ -68,10 +68,13 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(position, positionError, positionOptions);
   };
 
+  const cities = [`Stavropol`, `Prague`, `Amsterdam`, `Los Angeles`, `Moscow`, `Tokio`, `Seul`, `London`];
+
   useEffect(() => {
-    if (city) {
-      getWeatherByCityName(city);
-    }
+    cities.forEach((item) => {
+      getWeatherByCityName(item);
+    });
+
     if (!city) {
       getWeatherByCurrentGeolocation();
     }
@@ -81,40 +84,58 @@ const App = () => {
     return <Loader />;
   }
 
-  const temperature = weatherData.main.temp.toFixed(0);
-  const weatherCity = weatherData.name;
-  const weatherDescription = weatherData.weather[0].description;
-  const temperatureFeelsLike = weatherData.main.feels_like.toFixed(0);
-  const windDirection = getDirectionDescription(getDirectionByDegrees(weatherData.wind.deg));
-  const windSpeed = weatherData.wind.speed;
-  const weatherIcon = weatherData.weather[0].icon;
-
   return (
-    <div className="container">
-      <input
-        className="search"
-        type="search"
-        value={city}
-        onChange={(evt) => setCity(evt.target.value)}
-      />
+    <div className="app">
       {
-        weatherData &&
-        <div className="weather">
-          <img
-            className="weather__icon"
-            src={`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`}
-            width="100"
-            height="100"
-          />
-          <p className="weather__temperature">{`${temperature}°C`}</p>
-          <p className="weather__city">{weatherCity}</p>
-          <p className="weather__description">{weatherDescription}</p>
-          <p className="weather__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
-          <p className="weather__feels-like">Направление ветра: {windDirection}</p>
-          <p className="weather__feels-like">Скорость ветра: {windSpeed}м/с</p>
-        </div>
+        weatherData.length > 0 &&
+        weatherData.map((item) => {
+          const temperature = item.main.temp.toFixed(0);
+          const weatherCity = item.name;
+          const weatherDescription = item.weather[0].description;
+          const temperatureFeelsLike = item.main.feels_like.toFixed(0);
+          const windDirection = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
+          const windSpeed = item.wind.speed;
+          const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
+
+          return (
+            <div className="card">
+              <p className="card__city">{weatherCity}</p>
+              <img className="card__icon" src={icon} width="100" height="100" />
+              <p className="card__description">{weatherDescription}</p>
+              <p className="card__temperature">{`${temperature}°C`}</p>
+              <p className="card__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
+              <p className="card__feels-like">Направление ветра: {windDirection}</p>
+              <p className="card__feels-like">Скорость ветра: {windSpeed}м/с</p>
+            </div>
+          );
+        })
       }
     </div>
+    // <div className="container">
+    //   <input
+    //     className="search"
+    //     type="search"
+    //     value={city}
+    //     onChange={(evt) => setCity(evt.target.value)}
+    //   />
+    //   {
+    //     weatherData &&
+    //     <div className="weather">
+    //       <img
+    //         className="weather__icon"
+    //         src={`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`}
+    //         width="100"
+    //         height="100"
+    //       />
+    //       <p className="weather__temperature">{`${temperature}°C`}</p>
+    //       <p className="weather__city">{weatherCity}</p>
+    //       <p className="weather__description">{weatherDescription}</p>
+    //       <p className="weather__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
+    //       <p className="weather__feels-like">Направление ветра: {windDirection}</p>
+    //       <p className="weather__feels-like">Скорость ветра: {windSpeed}м/с</p>
+    //     </div>
+    //   }
+    // </div>
   );
 };
 
