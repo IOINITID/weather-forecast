@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import WeatherForecastService from '../../services/weatherForecastService';
 import Loader from '../loader/loader';
 import './app.css';
 import { getDirectionByDegrees } from 'degreezzy';
 import { getDirectionDescription } from '../../utils/direction';
 import { v4 as uuid } from 'uuid';
+import { getCapitalizeFirstLetter } from '../../utils/common';
 
 /**
  * @description Interface for position coordinates properties.
@@ -92,7 +93,7 @@ const App = () => {
         weatherData.map((item) => {
           const temperature = item.main.temp.toFixed(0);
           const weatherCity = item.name;
-          const weatherDescription = item.weather[0].description;
+          const weatherDescription = getCapitalizeFirstLetter(item.weather[0].description);
           const temperatureFeelsLike = item.main.feels_like.toFixed(0);
           const windDirection = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
           const windSpeed = item.wind.speed;
