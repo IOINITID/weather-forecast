@@ -4,6 +4,7 @@ import Loader from '../loader/loader';
 import './app.css';
 import { getDirectionByDegrees } from 'degreezzy';
 import { getDirectionDescription } from '../../utils/direction';
+import { v4 as uuid } from 'uuid';
 
 /**
  * @description Interface for position coordinates properties.
@@ -98,7 +99,7 @@ const App = () => {
           const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
 
           return (
-            <div className="card">
+            <div key={uuid()} className="card">
               <p className="card__city">{weatherCity}</p>
               <img className="card__icon" src={icon} width="100" height="100" />
               <p className="card__description">{weatherDescription}</p>
@@ -111,31 +112,6 @@ const App = () => {
         })
       }
     </div>
-    // <div className="container">
-    //   <input
-    //     className="search"
-    //     type="search"
-    //     value={city}
-    //     onChange={(evt) => setCity(evt.target.value)}
-    //   />
-    //   {
-    //     weatherData &&
-    //     <div className="weather">
-    //       <img
-    //         className="weather__icon"
-    //         src={`https://openweathermap.org/img/wn/${weatherIcon}@4x.png`}
-    //         width="100"
-    //         height="100"
-    //       />
-    //       <p className="weather__temperature">{`${temperature}°C`}</p>
-    //       <p className="weather__city">{weatherCity}</p>
-    //       <p className="weather__description">{weatherDescription}</p>
-    //       <p className="weather__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
-    //       <p className="weather__feels-like">Направление ветра: {windDirection}</p>
-    //       <p className="weather__feels-like">Скорость ветра: {windSpeed}м/с</p>
-    //     </div>
-    //   }
-    // </div>
   );
 };
 
