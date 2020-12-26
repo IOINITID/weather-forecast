@@ -38,8 +38,8 @@ const weatherService = new WeatherForecastService();
 
 const App = () => {
   const [weatherData, setWeatherData] = useState([]);
-  const [city, setCity] = useState(``);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeCard, setActiveCard] = useState(false);
 
   const getWeatherByCityName = async (cityName: string): Promise<void> => {
     const response = await weatherService.getWeatherByCityName(cityName);
@@ -48,8 +48,9 @@ const App = () => {
 
   const getWeatherByGeolocation = async (lat: number, lon: number): Promise<void> => {
     const response = await weatherService.getWeatherByGeolocation(lat, lon);
-    // setWeatherData(response);
+    setWeatherData((prev) => [response, ...prev]);
     setIsLoading(false);
+    setActiveCard(true);
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
@@ -59,6 +60,7 @@ const App = () => {
 
     const positionError = (positionError: IPositionError): void => {
       console.log(positionError);
+      setIsLoading(false);
     };
 
     const positionOptions: IPositionOptions = {
@@ -77,10 +79,8 @@ const App = () => {
       getWeatherByCityName(item);
     });
 
-    if (!city) {
-      getWeatherByCurrentGeolocation();
-    }
-  }, [city]);
+    getWeatherByCurrentGeolocation();
+  }, []);
 
   if (isLoading) {
     return <Loader />;
@@ -90,7 +90,7 @@ const App = () => {
     <div className="app">
       {
         weatherData.length > 0 &&
-        weatherData.map((item) => {
+        weatherData.map((item, index) => {
           const temperature = item.main.temp.toFixed(0);
           const weatherCity = item.name;
           const weatherDescription = getCapitalizeFirstLetter(item.weather[0].description);
@@ -100,7 +100,7 @@ const App = () => {
           const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
 
           return (
-            <div key={uuid()} className="card">
+            <div key={uuid()} className={`card ${activeCard && index === 0 && `card--active`}`}>
               <p className="card__city">{weatherCity}</p>
               <img className="card__icon" src={icon} width="100" height="100" />
               <p className="card__description">{weatherDescription}</p>
