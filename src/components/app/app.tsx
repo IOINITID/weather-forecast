@@ -102,7 +102,7 @@ const App = () => {
           return (
             <div key={uuid()} className={`card ${activeCard && index === 0 && `card--active`}`}>
               <p className="card__city">{weatherCity}</p>
-              <img className="card__icon" src={icon} width="100" height="100" />
+              <img className="card__icon" src={icon} width="100" height="100" loading="lazy" />
               <p className="card__description">{weatherDescription}</p>
               <p className="card__temperature">{`${temperature}°C`}</p>
               <p className="card__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
