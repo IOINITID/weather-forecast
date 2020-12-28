@@ -91,16 +91,17 @@ const App = () => {
       {
         weatherData &&
         weatherData.map((item, index) => {
-          const temperature = item.main.temp.toFixed(0);
-          const weatherCity = item.name;
-          const weatherDescription = getCapitalizeFirstLetter(item.weather[0].description);
-          const temperatureFeelsLike = item.main.feels_like.toFixed(0);
-          const windDirection = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
-          const windSpeed = Math.round(item.wind.speed);
+          const temperature: string = item.main.temp.toFixed(0);
+          const weatherCity: string = item.name;
+          const weatherDescription: string = getCapitalizeFirstLetter(item.weather[0].description);
+          const temperatureFeelsLike: string = item.main.feels_like.toFixed(0);
+          const windDirection: string = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
+          const windSpeed: number = Math.round(item.wind.speed);
           const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
+          const activeCardClassName: string = activeCard && index === 0 && `card--active`;
 
           return (
-            <div key={uuid()} className={`card ${activeCard && index === 0 && `card--active`}`}>
+            <div key={uuid()} className={`card ${activeCardClassName}`}>
               <p className="card__city">{weatherCity}</p>
               <img className="card__icon" src={icon} width="100" height="100" loading="lazy" />
               <p className="card__description">{weatherDescription}</p>
