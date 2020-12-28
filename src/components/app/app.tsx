@@ -96,7 +96,7 @@ const App = () => {
           const weatherDescription = getCapitalizeFirstLetter(item.weather[0].description);
           const temperatureFeelsLike = item.main.feels_like.toFixed(0);
           const windDirection = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
-          const windSpeed = item.wind.speed;
+          const windSpeed = Math.round(item.wind.speed);
           const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
 
           return (
@@ -107,7 +107,7 @@ const App = () => {
               <p className="card__temperature">{`${temperature}°C`}</p>
               <p className="card__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
               <p className="card__feels-like">Направление ветра: {windDirection}</p>
-              <p className="card__feels-like">Скорость ветра: {windSpeed}м/с</p>
+              <p className="card__feels-like">Скорость ветра: {windSpeed} м/с</p>
             </div>
           );
         })
