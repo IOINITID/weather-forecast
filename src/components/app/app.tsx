@@ -89,7 +89,7 @@ const App = () => {
   return (
     <div className="app">
       {
-        weatherData.length > 0 &&
+        weatherData &&
         weatherData.map((item, index) => {
           const temperature = item.main.temp.toFixed(0);
           const weatherCity = item.name;
