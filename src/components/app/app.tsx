@@ -41,16 +41,20 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeCard, setActiveCard] = useState(false);
 
-  const getWeatherByCityName = async (cityName: string): Promise<void> => {
-    const response = await weatherService.getWeatherByCityName(cityName);
-    setWeatherData((prev) => [...prev, response]);
+  const getWeatherByCityName = (cityName: string): void => {
+    weatherService.getWeatherByCityName(cityName)
+    .then((response) => {
+      setWeatherData((prev) => [...prev, response]);
+    });
   };
 
-  const getWeatherByGeolocation = async (lat: number, lon: number): Promise<void> => {
-    const response = await weatherService.getWeatherByGeolocation(lat, lon);
-    setWeatherData((prev) => [response, ...prev]);
-    setIsLoading(false);
-    setActiveCard(true);
+  const getWeatherByGeolocation = (lat: number, lon: number): void => {
+    weatherService.getWeatherByGeolocation(lat, lon)
+    .then((response) => {
+      setWeatherData((prev) => [response, ...prev]);
+      setIsLoading(false);
+      setActiveCard(true);
+    });
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
