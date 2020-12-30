@@ -1,6 +1,18 @@
 import React from 'react';
 import './card.css';
-import { ICard } from '../../interfaces/index';
+
+interface ICard {
+  data: {
+    temperature: string;
+    weatherCity: string;
+    weatherDescription: string;
+    temperatureFeelsLike: string;
+    windDirection: string;
+    windSpeed: number;
+    icon: string;
+    activeCardClassName: string;
+  }
+};
 
 const Card = (props: ICard) => {
   const {

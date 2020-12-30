@@ -25,25 +25,8 @@ interface IPositionOptions {
   maximumAge: number;
 };
 
-/**
- * @description Interface for Card props.
- */
-interface ICard {
-  data: {
-    temperature: string;
-    weatherCity: string;
-    weatherDescription: string;
-    temperatureFeelsLike: string;
-    windDirection: string;
-    windSpeed: number;
-    icon: string;
-    activeCardClassName: string;
-  }
-};
-
 export {
   IPosition,
   IPositionError,
-  IPositionOptions,
-  ICard
+  IPositionOptions
 };
