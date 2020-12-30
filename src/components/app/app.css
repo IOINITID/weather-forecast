@@ -12,11 +12,48 @@ body {
 .root {
   width: 100%;
   min-height: 100vh;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 
 .container {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #d9afd9;
-  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  height: auto;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+@media (max-width: 1550px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 990px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
