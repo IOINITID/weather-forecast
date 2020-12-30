@@ -1,11 +1,11 @@
 import React from 'react';
 import './app.css';
-import Card from '../card/card';
+import CardList from '../card-list/card-list';
 
 const App = () => {
   return (
     <div className="container">
-      <Card />
+      <CardList />
     </div>
   );
 };
