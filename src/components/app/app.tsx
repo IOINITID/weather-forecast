@@ -6,33 +6,7 @@ import { getDirectionByDegrees } from 'degreezzy';
 import { getDirectionDescription } from '../../utils/direction';
 import { v4 as uuid } from 'uuid';
 import { getCapitalizeFirstLetter } from '../../utils/common';
-
-/**
- * @description Type for position coordinates properties.
- */
-type TPosition = {
-  coords: {
-    latitude: number;
-    longitude: number;
-  };
-};
-
-/**
- * @description Type for position coordinates errors.
- */
-type TPositionError = {
-  code: number;
-  message: string;
-};
-
-/**
- * @description Type for position coordinates options.
- */
-type TPositionOptions = {
-  enableHighAccuracy: boolean;
-  timeout: number;
-  maximumAge: number;
-};
+import { TPosition, TPositionError, TPositionOptions } from '../../types/index';
 
 const weatherService = new WeatherForecastService();
 
