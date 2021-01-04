@@ -50,7 +50,7 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(position, positionError, positionOptions);
   };
 
-  const cities = [`Stavropol`, `Prague`, `Amsterdam`, `Los Angeles`, `Moscow`, `Tokio`, `Seul`, `London`];
+  const cities: string[] = [`Stavropol`, `Prague`, `Amsterdam`, `Los Angeles`, `Moscow`, `Tokio`, `Seul`, `London`];
 
   useEffect(() => {
     cities.forEach((item) => {
