@@ -8,27 +8,27 @@ import { v4 as uuid } from 'uuid';
 import { getCapitalizeFirstLetter } from '../../utils/common';
 
 /**
- * @description Type for position coordinates properties.
+ * @description Interface for position coordinates properties.
  */
-type TPosition = {
+interface IPosition {
   coords: {
     latitude: number;
     longitude: number;
-  };
-};
+  }
+}
 
 /**
- * @description Type for position coordinates errors.
+ * @description Interface for position coordinates errors.
  */
-type TPositionError = {
+interface IPositionError {
   code: number;
   message: string;
-};
+}
 
 /**
- * @description Type for position coordinates options.
+ * @description Interface for position coordinates options.
  */
-type TPositionOptions = {
+interface IPositionOptions {
   enableHighAccuracy: boolean;
   timeout: number;
   maximumAge: number;
@@ -58,16 +58,16 @@ const App = () => {
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
-    const position = (position: TPosition): void => {
+    const position = (position: IPosition): void => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
     };
 
-    const positionError = (positionError: TPositionError): void => {
+    const positionError = (positionError: IPositionError): void => {
       console.log(positionError);
       setIsLoading(false);
     };
 
-    const positionOptions: TPositionOptions = {
+    const positionOptions: IPositionOptions = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0
