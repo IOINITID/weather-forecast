@@ -14,8 +14,8 @@ interface IPosition {
   coords: {
     latitude: number;
     longitude: number;
-  }
-}
+  };
+};
 
 /**
  * @description Interface for position coordinates errors.
@@ -23,7 +23,7 @@ interface IPosition {
 interface IPositionError {
   code: number;
   message: string;
-}
+};
 
 /**
  * @description Interface for position coordinates options.
