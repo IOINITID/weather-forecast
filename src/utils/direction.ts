@@ -37,6 +37,4 @@ const getDirectionDescription = (direction: string): string => {
   }
 };
 
-export {
-  getDirectionDescription
-};
+export { getDirectionDescription };
