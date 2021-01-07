@@ -15,7 +15,7 @@ interface IPosition {
     latitude: number;
     longitude: number;
   };
-};
+}
 
 /**
  * @description Interface for position coordinates errors.
@@ -23,7 +23,7 @@ interface IPosition {
 interface IPositionError {
   code: number;
   message: string;
-};
+}
 
 /**
  * @description Interface for position coordinates options.
@@ -32,7 +32,7 @@ interface IPositionOptions {
   enableHighAccuracy: boolean;
   timeout: number;
   maximumAge: number;
-};
+}
 
 const weatherService = new WeatherForecastService();
 
@@ -42,19 +42,17 @@ const App = () => {
   const [activeCard, setActiveCard] = useState(false);
 
   const getWeatherByCityName = (cityName: string): void => {
-    weatherService.getWeatherByCityName(cityName)
-      .then((response) => {
-        setWeatherData((prev) => [...prev, response]);
-      });
+    weatherService.getWeatherByCityName(cityName).then((response) => {
+      setWeatherData((prev) => [...prev, response]);
+    });
   };
 
   const getWeatherByGeolocation = (lat: number, lon: number): void => {
-    weatherService.getWeatherByGeolocation(lat, lon)
-      .then((response) => {
-        setWeatherData((prev) => [response, ...prev]);
-        setIsLoading(false);
-        setActiveCard(true);
-      });
+    weatherService.getWeatherByGeolocation(lat, lon).then((response) => {
+      setWeatherData((prev) => [...prev, response]);
+      setIsLoading(false);
+      setActiveCard(true);
+    });
   };
 
   const getWeatherByCurrentGeolocation = (): void => {
@@ -70,13 +68,13 @@ const App = () => {
     const positionOptions: IPositionOptions = {
       enableHighAccuracy: true,
       timeout: 5000,
-      maximumAge: 0
+      maximumAge: 0,
     };
 
     navigator.geolocation.getCurrentPosition(position, positionError, positionOptions);
   };
 
-  const cities = [`Stavropol`, `Prague`, `Amsterdam`, `Los Angeles`, `Moscow`, `Tokio`, `Seul`, `London`];
+  const cities = ['Stavropol', 'Prague', 'Amsterdam', 'Los Angeles', 'Moscow', 'Tokio', 'Seul', 'London'];
 
   useEffect(() => {
     cities.forEach((item) => {
@@ -90,10 +88,11 @@ const App = () => {
     return <Loader />;
   }
 
+  console.log(weatherData);
+
   return (
     <div className="app">
-      {
-        weatherData &&
+      {weatherData &&
         weatherData.map((item, index) => {
           const temperature: string = item.main.temp.toFixed(0);
           const weatherCity: string = item.name;
@@ -102,12 +101,12 @@ const App = () => {
           const windDirection: string = getDirectionDescription(getDirectionByDegrees(item.wind.deg));
           const windSpeed: number = Math.round(item.wind.speed);
           const icon: string = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
-          const activeCardClassName: string = activeCard && index === 0 && `card--active`;
+          const activeCardClassName: string = activeCard && index === 0 ? 'card--active' : '';
 
           return (
             <div key={uuid()} className={`card ${activeCardClassName}`}>
               <p className="card__city">{weatherCity}</p>
-              <img className="card__icon" src={icon} width="100" height="100" loading="lazy" />
+              <img className="card__icon" src={icon} width="100" height="100" loading="lazy" alt={weatherDescription} />
               <p className="card__description">{weatherDescription}</p>
               <p className="card__temperature">{`${temperature}°C`}</p>
               <p className="card__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
@@ -115,8 +114,7 @@ const App = () => {
               <p className="card__feels-like">Скорость ветра: {windSpeed} м/с</p>
             </div>
           );
-        })
-      }
+        })}
     </div>
   );
 };

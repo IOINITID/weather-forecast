@@ -5,6 +5,4 @@ const getCapitalizeFirstLetter = (string: string): string => {
   return resultString;
 };
 
-export {
-  getCapitalizeFirstLetter
-};
+export { getCapitalizeFirstLetter };

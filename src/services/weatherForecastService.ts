@@ -7,7 +7,7 @@ class WeatherForecastService {
     this.apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
   }
 
-  public getWeatherByCityName(city: string): Promise<any> {
+  public getWeatherByCityName(city: string): Promise<Response> {
     const fetchUrl: string = `${this.apiUrl}q=${city}&units=metric&lang=ru&appid=${this.apiKey}`;
 
     return fetch(fetchUrl)
@@ -15,7 +15,7 @@ class WeatherForecastService {
       .catch((error) => error);
   }
 
-  public getWeatherByGeolocation(lat: number, lon: number): Promise<any> {
+  public getWeatherByGeolocation(lat: number, lon: number): Promise<Response> {
     const fetchUrl: string = `${this.apiUrl}lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=${this.apiKey}`;
 
     return fetch(fetchUrl)
