@@ -49,7 +49,7 @@ const App = () => {
 
   const getWeatherByGeolocation = (lat: number, lon: number): void => {
     weatherService.getWeatherByGeolocation(lat, lon).then((response) => {
-      setWeatherData((prev) => [...prev, response]);
+      setWeatherData((prev) => [response, ...prev]);
       setIsLoading(false);
       setActiveCard(true);
     });
@@ -87,8 +87,6 @@ const App = () => {
   if (isLoading) {
     return <Loader />;
   }
-
-  console.log(weatherData);
 
   return (
     <div className="app">
