@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Weather Forecast application.",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
