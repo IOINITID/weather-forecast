@@ -12,6 +12,7 @@
           "inside-parens"
         ]
       }
-    ]
+    ],
+    "string-quotes": "single"
   }
 }
