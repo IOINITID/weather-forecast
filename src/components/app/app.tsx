@@ -51,6 +51,7 @@ const App = () => {
   const getWeatherByGeolocation = (lat: number, lon: number): void => {
     weatherService.getWeatherByGeolocation(lat, lon).then((response) => {
       setWeatherData((prev) => [response, ...prev]);
+      setIsLoading(false);
       setActiveCard(true);
     });
   };
@@ -62,6 +63,7 @@ const App = () => {
 
     const positionError = (positionError: IPositionError): void => {
       console.log(positionError);
+      setIsLoading(false);
     };
 
     const positionOptions: IPositionOptions = {
