@@ -58,11 +58,12 @@ const App = () => {
   const getWeatherByCurrentGeolocation = (): void => {
     const position = (position: IPosition): void => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
-      weatherData && weatherData.length >= cities.length ? setIsLoading(false) : null;
+      setIsLoading(false);
     };
 
     const positionError = (positionError: IPositionError): void => {
       console.error('Error message: Geolocation not found.', positionError);
+      weatherData && weatherData.length >= cities.length ? setIsLoading(false) : null;
     };
 
     const positionOptions: IPositionOptions = {
