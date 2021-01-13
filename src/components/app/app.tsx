@@ -6,6 +6,7 @@ import { getDirectionByDegrees } from 'degreezzy';
 import { getDirectionDescription } from '../../utils/direction';
 import { v4 as uuid } from 'uuid';
 import { getCapitalizeFirstLetter } from '../../utils/common';
+import { motion } from 'framer-motion';
 
 /**
  * @description Interface for position coordinates properties.
@@ -30,7 +31,7 @@ interface IPositionError {
  */
 interface IPositionOptions {
   enableHighAccuracy: boolean;
-  timeout: number;
+  timeout?: number;
   maximumAge: number;
 }
 
@@ -67,14 +68,14 @@ const App = () => {
 
     const positionOptions: IPositionOptions = {
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: 1000,
       maximumAge: 0,
     };
 
     navigator.geolocation.getCurrentPosition(position, positionError, positionOptions);
   };
 
-  const cities = ['Stavropol', 'Prague', 'Amsterdam', 'Los Angeles', 'Moscow', 'Tokio', 'Seul', 'London'];
+  const cities: string[] = ['Stavropol', 'Prague', 'Amsterdam', 'Los Angeles', 'Moscow', 'Tokio', 'Seul', 'London'];
 
   useEffect(() => {
     cities.forEach((item) => {
@@ -84,12 +85,33 @@ const App = () => {
     getWeatherByCurrentGeolocation();
   }, []);
 
+  /** Framer Motion configuration data */
+  const containerMotion = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.25,
+      },
+    },
+  };
+
+  const itemMotion = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   if (isLoading) {
     return <Loader />;
   }
 
   return (
-    <div className="app">
+    <motion.div className="app" variants={containerMotion} initial="hidden" animate="visible">
       {weatherData &&
         weatherData.map((item, index) => {
           const temperature: string = item.main.temp.toFixed(0);
@@ -102,7 +124,7 @@ const App = () => {
           const activeCardClassName: string = activeCard && index === 0 ? 'card--active' : '';
 
           return (
-            <div key={uuid()} className={`card ${activeCardClassName}`}>
+            <motion.div key={uuid()} className={`card ${activeCardClassName}`} variants={itemMotion}>
               <p className="card__city">{weatherCity}</p>
               <img className="card__icon" src={icon} width="100" height="100" loading="lazy" alt={weatherDescription} />
               <p className="card__description">{weatherDescription}</p>
@@ -110,10 +132,10 @@ const App = () => {
               <p className="card__feels-like">Ощущается как: {temperatureFeelsLike}°C</p>
               <p className="card__feels-like">Направление ветра: {windDirection}</p>
               <p className="card__feels-like">Скорость ветра: {windSpeed} м/с</p>
-            </div>
+            </motion.div>
           );
         })}
-    </div>
+    </motion.div>
   );
 };
 
