@@ -63,7 +63,6 @@ const App = () => {
 
     const positionError = (positionError: IPositionError): void => {
       console.error('Error message: Geolocation not found.', positionError);
-      setIsLoading(false);
     };
 
     const positionOptions: IPositionOptions = {
