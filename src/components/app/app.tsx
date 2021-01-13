@@ -113,7 +113,6 @@ const App = () => {
   return (
     <motion.div className="app" variants={containerMotion} initial="hidden" animate="visible">
       {weatherData &&
-        weatherData.length > cities.length &&
         weatherData.map((item, index) => {
           const temperature: string = item.main.temp.toFixed(0);
           const weatherCity: string = item.name;
