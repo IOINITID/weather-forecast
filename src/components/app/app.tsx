@@ -58,7 +58,7 @@ const App = () => {
   const getWeatherByCurrentGeolocation = (): void => {
     const position = (position: IPosition): void => {
       getWeatherByGeolocation(position.coords.latitude, position.coords.longitude);
-      weatherData && weatherData.length >= cities.length ? setIsLoading(false) : null;
+      setIsLoading(false);
     };
 
     const positionError = (positionError: IPositionError): void => {
