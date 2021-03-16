@@ -7,6 +7,8 @@ import { getDirectionDescription } from '../../utils/direction';
 import { v4 as uuid } from 'uuid';
 import { getCapitalizeFirstLetter } from '../../utils/common';
 
+const IPFetchUrl = 'https://ipgeolocation.abstractapi.com/v1?api_key=0e3a214bdeac4b4dbd5e369dfa7be839';
+
 /**
  * @description Interface for position coordinates properties.
  */
@@ -61,7 +63,16 @@ const App = () => {
     };
 
     const positionError = (positionError: IPositionError): void => {
-      console.log(positionError);
+      console.log('Ошибка получения данных геолокации', positionError);
+      console.log('Попытка определения данных геолокации с помощью дополнительного запроса.');
+      fetch(IPFetchUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          getWeatherByGeolocation(data.latitude, data.longitude);
+          return data;
+        })
+        .then((data) => console.log(`Ваша локация определена как: ${data.city}`));
+
       setIsLoading(false);
     };
 
