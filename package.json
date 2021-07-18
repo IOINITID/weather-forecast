@@ -47,7 +47,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "degreezzy": "^1.3.2",
+    "degreezzy": "^1.2.1",
     "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.2",
