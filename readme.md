@@ -1,14 +1,15 @@
-**Weather Forecast**
+Project name: **Weather Forecast**
+
 [![Build Status](https://travis-ci.com/IOINITID/weather-forecast.svg?branch=master)](https://travis-ci.com/IOINITID/weather-forecast)
 
 ---
 
-Главная страница сайта: 🖥️ https://ioinitid.github.io/weather-forecast/index.html
+Main page: 🖥️ https://ioinitid.github.io/weather-forecast
 
 ---
 
-**Папка с исходными файлами — `src/`.**
+**Source files folder — `src/`.**
 
-- [contributing.md](contributing.md) — руководство по сборке проекта.
+- [contributing.md](contributing.md) — project build guide.
 
 ---

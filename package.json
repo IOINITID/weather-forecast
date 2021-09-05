@@ -2,12 +2,31 @@
   "name": "weather-forecast",
   "version": "1.0.0",
   "private": true,
-  "description": "Weather Forecast application.",
-  "license": "MIT",
+  "description": "Weather Forecast - weather forecast application.",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IOINITID/weather-forecast.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "React",
+    "Webpack",
+    "OpenWeatherMap",
+    "IPGeolocation",
+    "CSS-Modules",
+    "Weather",
+    "Forecast"
+  ],
+  "author": "Igor Orishchenko <ioinitid@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IOINITID/weather-forecast/issues"
+  },
+  "homepage": "https://github.com/IOINITID/weather-forecast#readme",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
