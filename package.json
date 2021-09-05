@@ -12,6 +12,7 @@
     "url": "git+https://github.com/IOINITID/weather-forecast.git"
   },
   "keywords": [
+    "JavaScript",
     "TypeScript",
     "React",
     "Webpack",
