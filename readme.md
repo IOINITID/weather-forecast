@@ -4,7 +4,7 @@ Project name: **Weather Forecast**
 
 ---
 
-Main page: 🖥️ https://ioinitid.github.io/weather-forecast
+Main page: 🖥️ https://ioinitid.github.io/weather-forecast/
 
 ---
 
